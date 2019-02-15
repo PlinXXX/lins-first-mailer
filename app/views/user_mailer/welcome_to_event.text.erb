@@ -1,0 +1,16 @@
+Salut <%= @user.first_name %>, merci d'avoir participer à un evenement! 
+===================================================================================
+ 
+Tu t'es inscrit en utilisant l'e-mail suivant : <%= @user.email %>.
+
+Tu t'es inscrit à l'evenement "<%= @event.title %>"
+	qui sedéroulera le <%= @event.start_date %>
+	à <%= @event.location %>
+	PAF : <%= @event.price %>     
+
+
+Voici ton stripe_id(ne le perd pas sinon t'es mort!) : ID<%= @stripe_customer_id %>
+ 
+Pour accéder à ton espace client, connecte-toi via : <%= @url %>.
+ 
+À très vite sur monsite.fr !

@@ -1,0 +1,33 @@
+<h2>Edit Event</h2>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+	<%= form_tag(event_path(@event.id), method: "PATCH") do %>
+
+	  <%= label_tag(:title, "Title:") %>
+	  <%= text_field_tag(:title, "#{@event.title}") %><br>
+
+	  <%= label_tag(:duration, "Duration(in hour):") %>
+	  <%= number_field_tag(:duration, "#{@event.duration}") %><br>
+	  
+	  <%= label_tag(:start_date, "Start date:") %>
+	  <%= date_field_tag(:start_date, "#{@event.start_date}") %><br>
+
+
+	  <%= label_tag(:location, "Location:") %>
+	  <%= text_field_tag(:location, "#{@event.location}") %><br>
+
+	  <%= label_tag(:price, "Price:") %>
+	  <%= text_field_tag(:price, "#{@event.price}") %><br>	  
+
+	  <%= label_tag(:description, "Description:") %><br>
+	  <%= text_area_tag(:description, "#{@event.description}", size: "24x6") %><br>
+	  
+	  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+	  
+	  <%= submit_tag("Update", :class => "btn btn-light") %>
+	<% end %>
+
+  </div>
+</div>

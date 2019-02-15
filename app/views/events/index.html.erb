@@ -1,0 +1,105 @@
+<span class="badge badge-success"><%= link_to "Create new event", new_event_path %></span>
+
+<div>
+	<h2>Events</h2>
+
+	<% @all_events.each do |event| %>
+		<div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+	      <div class="card-header"><%= event.title %></div>
+	        <div class="card-body">
+
+	          <p class="card-text">
+	            <%= event.description %>
+	            (<%= event.attendances.length %>)<br>
+	
+	          	<% if event.attendances.length != 0 %>
+	          		<% event.attendances.each do |a| %>
+	          			<%= a.user.first_name %> :
+	          			<%= a.user.email %><br>
+	          		<% end %>
+	          	<%end%>
+
+	          </p>
+
+	          <p class="card-text">
+	          	<span class="badge badge-light"><%= link_to "EDIT", edit_event_path(event.id) %></span>
+	            <span class="badge badge-danger"><%= link_to "DELETE", event_path(event.id), method: "delete", data: {confirm: "Are you sure ?"} %></span>
+	          </p>
+
+	        </div>
+	      </div>
+	    </div>
+	<% end %>
+</div>
+
+
+
+
+	<!-- <span class="badge badge-primary">Primary</span>
+	<span class="badge badge-secondary">Secondary</span>
+	<span class="badge badge-success">Success</span>
+	<span class="badge badge-danger">Danger</span>
+	<span class="badge badge-warning">Warning</span>
+	<span class="badge badge-info">Info</span>
+	<span class="badge badge-light">Light</span>
+	<span class="badge badge-dark">Dark</span> -->
+
+
+
+
+	<!-- <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+	  <div class="card-header">Header</div>
+	  <div class="card-body">
+	    <h4 class="card-title">Primary card title</h4>
+	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+	  </div>
+	</div>
+	<div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
+	  <div class="card-header">Header</div>
+	  <div class="card-body">
+	    <h4 class="card-title">Secondary card title</h4>
+	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+	  </div>
+	</div>
+	<div class="card text-white bg-success mb-3" style="max-width: 20rem;">
+	  <div class="card-header">Header</div>
+	  <div class="card-body">
+	    <h4 class="card-title">Success card title</h4>
+	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+	  </div>
+	</div>
+	<div class="card text-white bg-danger mb-3" style="max-width: 20rem;">
+	  <div class="card-header">Header</div>
+	  <div class="card-body">
+	    <h4 class="card-title">Danger card title</h4>
+	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+	  </div>
+	</div>
+	<div class="card text-white bg-warning mb-3" style="max-width: 20rem;">
+	  <div class="card-header">Header</div>
+	  <div class="card-body">
+	    <h4 class="card-title">Warning card title</h4>
+	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+	  </div>
+	</div>
+	<div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+	  <div class="card-header">Header</div>
+	  <div class="card-body">
+	    <h4 class="card-title">Info card title</h4>
+	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+	  </div>
+	</div>
+	<div class="card bg-light mb-3" style="max-width: 20rem;">
+	  <div class="card-header">Header</div>
+	  <div class="card-body">
+	    <h4 class="card-title">Light card title</h4>
+	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+	  </div>
+	</div>
+	<div class="card text-white bg-dark mb-3" style="max-width: 20rem;">
+	  <div class="card-header">Header</div>
+	  <div class="card-body">
+	    <h4 class="card-title">Dark card title</h4>
+	    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+	  </div>
+	</div> -->	

@@ -1,0 +1,52 @@
+<div class="jumbotron">
+  <h1 class="display-3"><%=@event.title%></h1>
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      Host : <%=@event.admin.first_name%>
+    </li><br>
+  </ul>
+
+  <ul class="nav nav-tabs">  
+    <li class="nav-item">
+      Host email : <%=@event.admin.email%>
+    </li><br>
+  </ul>
+
+  <ul class="nav nav-tabs">  
+    <li class="nav-item">
+      Start date : <%=@event.start_date%>
+    </li><br>
+  </ul>
+
+  <ul class="nav nav-tabs">  
+    <li class="nav-item">
+      Location : <%=@event.location%>
+    </li><br>
+  </ul>
+
+  <ul class="nav nav-tabs">  
+    <li class="nav-item">
+      End date : <%=end_date(@event)%>
+    </li><br>
+  </ul>
+
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      Description : <%=@event.description%>
+    </li><br>
+  </ul>
+
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+    	Attendances : <%=@event.attendances.length%>
+    </li><br>
+  </ul><br>
+
+<% if is_free?(@event) %>
+  <%= form_tag(event_attendances_path(@event.id), method: "POST") do %>    
+    <%= submit_tag("Participe", :class => "btn btn-dark") %>
+  <% end %>
+<%else%>
+  <span class="badge badge-success"><%= link_to "Interested", new_event_attendance_path(@event.id) %></span>
+<% end %>
+</div>

@@ -1,0 +1,15 @@
+<h1> Salut <%= @user.first_name %>, merci d'avoir participer à un evenement! </h1>
+ 
+<p> 
+	Tu t'es inscrit en utilisant l'e-mail suivant : <%= @user.email %>.<br>
+
+	Tu t'es inscrit à l'evenement "<%= @event.title %>"<br>
+		qui se déroulera le <%= @event.start_date %><br>
+		à <%= @event.location %><br>
+		PAF : <%= @event.price %> Ar<br>
+</p>  
+
+Voici ton stripe_id(ne le perd pas sinon t'es mort!) : <%= @stripe_customer_id %><br>
+
+ 
+À très vite sur monsite.fr !

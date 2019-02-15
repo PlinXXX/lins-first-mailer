@@ -1,0 +1,36 @@
+<div class="container">
+      <div class='row'>
+          <div class='col-md-4'></div>
+            <div class='col-md-4'>
+              <script src='https://js.stripe.com/v2/' type='text/javascript'></script>
+              	<p>
+       						Hi, <%= @user.first_name %>.<br>
+       						It seems that you're interested in "<%= @event.title %>" event so let's reserve your place !<br>
+       			  	</p>
+
+              <%= form_tag event_attendances_path(@event.id), method: :post do %>
+                <article>
+                  <% if flash[:error].present? %>
+                    <div id="error_explanation">
+                      <p><%= flash[:error] %></p>
+                    </div>
+                  <% end %>
+                  <label class="amount">
+                    <span>Amount: Ar <%= @event.price %></span>
+                  </label>
+                </article>
+
+                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                  data-description="Event's subscription"
+                  data-amount="<%= @event.price %>"
+                  data-locale="auto">
+                </script>
+              <% end %>
+            </div>
+          </div>
+      </div>
+</div>
+
+
+

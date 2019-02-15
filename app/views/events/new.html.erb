@@ -1,0 +1,44 @@
+<h2>New Event</h2>
+
+<!-- admin_id: <%= current_user.first_name %><br>
+title: <br>
+start_date: <br>
+duration: <br>
+location: <br>
+price: <br>
+description: <br> -->
+<!-- 
+<%= request.location.city %> -->
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+	<%= form_tag(events_path, method: "POST") do %>
+
+	  <%= label_tag(:title, "Title:") %>
+	  <%= text_field_tag(:title) %><br>
+
+	  <%= label_tag(:duration, "Duration(in hour):") %>
+	  <%= number_field_tag(:duration) %><br>
+	  
+	  <%= label_tag(:start_date, "Start date:") %>
+	  <%= date_field_tag(:start_date) %><br>
+
+
+	  <%= label_tag(:location, "Location:") %>
+	  <%= text_field_tag(:location) %><br>
+
+	  <%= label_tag(:price, "Price:") %>
+	  <%= text_field_tag(:price) %><br>	  
+
+	  <%= label_tag(:description, "Description:") %><br>
+	  <%= text_area_tag(:description, "The Best Opportunity", size: "24x6") %><br>
+	  
+	  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+	  
+	  <%= submit_tag("Create", :class => "btn btn-dark") %>
+	<% end %>
+
+  </div>
+</div>
+

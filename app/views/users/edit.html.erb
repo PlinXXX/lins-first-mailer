@@ -1,0 +1,21 @@
+edit.html.erb
+
+<h2>Edit <%= @current_user.first_name %></h2>
+
+	<%= form_tag(user_path(@current_user.id), method: "patch") do %>
+
+	  <%= label_tag(:first_name, "First_name:") %>
+	  <%= text_field_tag(:first_name) %><br>
+
+	  <%= label_tag(:last_name, "Last_name:") %>
+	  <%= text_field_tag(:last_name) %><br>
+
+	  <%= label_tag(:description, "Description:") %><br>
+	  <%= text_area_tag(:description, "My description", size: "24x6") %><br>
+	  
+	  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+	  
+	  <%= submit_tag("Update", :class => "btn btn-dark") %>
+	<% end %>
+
+<%= link_to "Back", :back %>

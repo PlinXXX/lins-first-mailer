@@ -14,6 +14,7 @@ class EventsController < ApplicationController
 
   def show
   	@current_user = current_user
+    @like = Like.find_by(user_id: current_user.id, event_id: @event.id)
   end
 
   def create

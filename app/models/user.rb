@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :created_events, foreign_key: 'admin_id', class_name: "Event", dependent: :destroy
 	has_many :attendances, dependent: :destroy
 	has_many :events, through: :attendances
+  has_many :likes, dependent: :destroy
 
 	after_create :welcome_send
 

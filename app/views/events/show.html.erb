@@ -55,13 +55,15 @@
       You've participated in this event
     </div>
 
-    <div class="row">
-    <%= button_to 'Like', event_likes_path(@event.id), method: :post %>
-      <%= @event.likes.count %>
-      <%= (@event.likes.count) == 1 || (@event.likes.count) == 0 ? 'Like' : 'Likes' %>
-    <% if pre_like %>
-      <%= button_to 'Unlike', event_like_path(@event.id, @like.id), method: :delete %>
-    <% end %>
+    <div class="container">
+      <div class="row">
+      <%= button_to 'Like', event_likes_path(@event.id), method: :post %>
+        <%= @event.likes.count %>
+        <%= (@event.likes.count) == 1 || (@event.likes.count) == 0 ? 'Like' : 'Likes' %>
+      <% if pre_like %>
+        <%= button_to 'Unlike', event_like_path(@event.id, @like.id), method: :delete %>
+      <% end %>
+      </div>
     </div>
   <% end %>
 </div>

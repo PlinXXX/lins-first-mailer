@@ -1,33 +1,36 @@
 <h2>Edit Event</h2>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-
-	<%= form_tag(event_path(@event.id), method: "PATCH") do %>
-
-	  <%= label_tag(:title, "Title:") %>
-	  <%= text_field_tag(:title, "#{@event.title}") %><br>
-
-	  <%= label_tag(:duration, "Duration(in hour):") %>
-	  <%= number_field_tag(:duration, "#{@event.duration}") %><br>
-	  
-	  <%= label_tag(:start_date, "Start date:") %>
-	  <%= date_field_tag(:start_date, "#{@event.start_date}") %><br>
-
-
-	  <%= label_tag(:location, "Location:") %>
-	  <%= text_field_tag(:location, "#{@event.location}") %><br>
-
-	  <%= label_tag(:price, "Price:") %>
-	  <%= text_field_tag(:price, "#{@event.price}") %><br>	  
-
-	  <%= label_tag(:description, "Description:") %><br>
-	  <%= text_area_tag(:description, "#{@event.description}", size: "24x6") %><br>
-	  
-	  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-	  
-	  <%= submit_tag("Update", :class => "btn btn-light") %>
+  	<%= form_for @event do |f| %>
+		<div class="for-group">
+			<label>Title</label>
+			<%= f.text_field :title %>
+		</div>
+		<div class="for-group">
+			<label>Duration(in hour)</label>
+			<%= f.number_field :duration %>
+		</div>
+		<div class="for-group">
+			<label>Start date</label>
+			<%= f.date_field :start_date %>
+		</div>
+		<div class="for-group">
+			<label>Location</label>
+			<%= f.text_field :location %>
+		</div>
+		<div class="for-group">
+			<label>price</label>
+			<%= f.text_field :price %>
+		</div>
+		<div class="for-group">
+			<label>Description</label>
+			<%= f.text_area :description %>
+		</div>
+		<div class="form-group">
+			<button type="submit" class="btn btn-ligth">Update</button>
+		</div>
 	<% end %>
-
-  </div>
 </div>
+
+
+	

@@ -1,57 +1,51 @@
 class AttendancesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_event, only: [:new, :create]
+
 	include AttendancesHelper
 
 	def new
 		@user = current_user
-		@event = Event.find(params[:event_id])
 	end
 
 	def create
-		@event = Event.find(params[:event_id])
 		@user = current_user
-
 		# Amount in cents
-		  @amount = 500
+		if isnt_free?
+			@amount = 500
 
-		  @customer = Stripe::Customer.create(
-		    :email => params[:stripeEmail],
-		    :source  => params[:stripeToken]
-		  )
+			@customer = Stripe::Customer.create(
+			  :email => params[:stripeEmail],
+			  :source  => params[:stripeToken]
+			)
 
-		  @charge = Stripe::Charge.create(
-		    :customer    => @customer.id,
-		    :amount      => @amount,
-		    :description => 'Rails Stripe customer',
-		    :currency    => 'usd'
-		  )
+			@charge = Stripe::Charge.create(
+			  :customer    => @customer.id,
+			  :amount      => @amount,
+			  :description => 'Rails Stripe customer',
+	   		:currency    => 'usd'
+			)
 
-		@attendance = Attendance.create(
-			stripe_customer_id: @customer.id,
+			@stripe_customer_id = @customer.id
+		else
+			@stripe_customer_id = 'Free!!'
+		end
+
+		@attendance = Attendance.new(
+			stripe_customer_id: @stripe_customer_id,
 			user_id: @user.id,
 			event_id: @event.id
 		)
 
-		rescue Stripe::CardError => e
-  		flash[:error] = e.message
-  		redirect_to root_path
-		end
-		
+
+		respond_to do |format|
+	    if @attendance.save
+	      format.html { redirect_to event_path(@event.id), notice: 'Success' }
+	      format.json { render :new, status: :created, location: @attendance }
+	    else	        
+       	format.html { render :new }
+	      format.json { render json: @attendance.errors, status: :unprocessable_entity }
+	    end
+	  end
 	end
-
-
-    private
-
-    def is_uniq?
-			@one = []
-			@all = Attendance.all
-			@all.each do |att|
-				@one << att if (att.user == current_user && att.event == @event)
-			end
-			@one.length == 0
-		end
-
-		# In 02 Feb 19
-		def usd(price)
-			0.0003*price.round(2)
-		end
+end

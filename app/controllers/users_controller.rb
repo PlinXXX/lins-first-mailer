@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
 
 	def show
+		@current_user = current_user
 	end
 
 	def edit

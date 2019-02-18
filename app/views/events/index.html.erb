@@ -23,7 +23,9 @@
 
 	          <p class="card-text">
 	          	<span class="badge badge-light"><%= link_to "EDIT", edit_event_path(event.id) %></span>
-	            <span class="badge badge-danger"><%= link_to "DELETE", event_path(event.id), method: "delete", data: {confirm: "Are you sure ?"} %></span>
+	            <% if event.attendances == 0 %>
+	            	<span class="badge badge-danger"><%= link_to "DELETE", event_path(event.id), method: "delete", data: {confirm: "Are you sure ?"} %></span>          	
+	            <% end %>
 	          </p>
 
 	        </div>

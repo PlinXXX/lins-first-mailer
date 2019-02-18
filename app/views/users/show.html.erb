@@ -1,11 +1,14 @@
 <div class="jumbotron">
-  <h1 class="display-3">Your profile
-    <%if @user.avatar.attached?%>
-      <%= image_tag @user.avatar, alt: 'avatar' %>
-    <%else%>
-      <p>=== You didn't put any avatar yet ===</p>
-    <%end%>
-  </h1>
+  <div style="column-count: 2;">
+      <span >
+        <%if @user.avatar.attached?%>
+          <%= image_tag @user.avatar, alt: 'avatar', height: "100", width: "100" %>
+        <%else%>
+          <p>=== You didn't put any avatar yet ===</p>
+        <%end%>
+      </span>
+    <h1 class="display-3">Your profile</h1>
+  </div>
   <ul class="nav nav-tabs">
       <li class="nav-item">
         <%=@user.first_name%>

@@ -6,41 +6,51 @@
     <h2>Available events</h2>
       <div class="container">
         <div class="row">
+        
 
           <% @all_events.each do |event| %>
-            <div class="col-sm"> 
-              <% if event.start_date < Time.now %>   
-                <div class="card border-danger" style="max-width: 20rem;">
-                  <div class="card-header">Host : <%= event.admin.first_name %> (Event Past)</div>
-                    <div class="card-body">
-                      <p class="card-text">
-                        Title : <%= event.title %><br>
-                        Description : <%= event.description %><br>
-                      </p>
+            
+            <div style="column-count: 3;">
+                <span >
+                  <%if event.image.attached?%>
+                    <%= image_tag event.image, alt: 'image', height: "100", width: "100" %>
+                  <%else%>
+                    <p>=== You didn't put any picture yet ===</p>
+                  <%end%>
+                </span>
+                <% if event.start_date < Time.now %>   
+                  <div class="card border-danger" style="max-width: 20rem;">
+                    <div class="card-header">Host : <%= event.admin.first_name %> (Event Past)</div>
+                      <div class="card-body">
+                        <p class="card-text">
+                          Title : <%= event.title %><br>
+                          Description : <%= event.description %><br>
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              <% else %>
-                <div class="card border-warning" style="max-width: 20rem;">
-                  <div class="card-header">Host : <%= event.admin.first_name %></div>
-                    <div class="card-body">
-                      <p class="card-text">
-                        Title : <%= link_to "#{event.title}", event_path(event.id) %><br>
-                        Description : <%= event.description %><br>
-                      </p>
+                <% else %>
+                  <div class="card border-warning" style="max-width: 20rem;">
+                    <div class="card-header">Host : <%= event.admin.first_name %></div>
+                      <div class="card-body">
+                        <p class="card-text">
+                          Title : <%= link_to "#{event.title}", event_path(event.id) %><br>
+                          Description : <%= event.description %><br>
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              <% end %>
+                <% end %>
             </div><br>
-          <% end %>   
+
+          <% end %> 
+
 
         </div>   
       </div>   
 
       
   <% else %>
-
 
 
     <div class="container" style="text-align: center;">
@@ -50,7 +60,7 @@
     </div>
 
   <% end %>
-
+</div>
 
 
 <!-- 

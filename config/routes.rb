@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     end
   end
   resources :events do
+    resources :images, only: [:create, :destroy]
     resources :likes
     resources :attendances  
   end 

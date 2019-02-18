@@ -1,6 +1,13 @@
 <h2>Edit Event</h2>
 
 <div class="row">
+	<h3>Choose a picture</h3>
+	<div class="container">
+	<%= form_tag event_images_path(@event), multipart: true do %>
+	  <%= file_field_tag :image %>
+	  <%= submit_tag "Add" %>
+	<% end %>	
+	</div>
   	<%= form_for @event do |f| %>
 		<div class="for-group">
 			<label>Title</label>

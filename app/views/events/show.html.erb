@@ -43,6 +43,7 @@
   </ul><br>
 
   <% if is_uniq? %>
+    
     <% if is_free?(@event) %>
       <%= form_tag(event_attendances_path(@event.id), method: "POST") do %>    
         <%= submit_tag("Free", :class => "btn btn-success") %>
@@ -50,23 +51,25 @@
     <%else%>
       <span class="badge badge-success"><%= link_to "Interested", new_event_attendance_path(@event.id) %></span>
     <% end %>
+  
   <% else %>
+  
     <div class="btn btn-success">
       You've participated in this event
     </div>
 
     <div class="container">
       <div class="row">
-      
-      <% unless pre_like %> 
-      <%= button_to 'Like', event_likes_path(@event.id), method: :post %>
-      <% end %>
-        <%= @event.likes.count %>
-        <%= (@event.likes.count) == 1 || (@event.likes.count) == 0 ? 'Like' : 'Likes' %>
-      <% if pre_like %>
-        <%= button_to 'Unlike', event_like_path(@event.id, @like.id), method: :delete %>
-      <% end %>
+        <% unless pre_like %> 
+        <%= button_to 'Like', event_likes_path(@event.id), method: :post %>
+        <% end %>
+          <%= @event.likes.count %>
+          <%= (@event.likes.count) == 1 || (@event.likes.count) == 0 ? 'Like' : 'Likes' %>
+        <% if pre_like %>
+          <%= button_to 'Unlike', event_like_path(@event.id, @like.id), method: :delete %>
+        <% end %>
       </div>
     </div>
+  
   <% end %>
 </div>

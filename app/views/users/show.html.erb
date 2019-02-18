@@ -1,10 +1,11 @@
 <div class="jumbotron">
-  <h1 class="display-3">Your profile</h1>
+  <h1 class="display-3">Your profile
     <%if @user.avatar.attached?%>
       <%= image_tag @user.avatar, alt: 'avatar' %>
     <%else%>
-      <p>=== Il n'y a pas encore d'avatar lié à cet utilisateur ===</p>
+      <p>=== You didn't put any avatar yet ===</p>
     <%end%>
+  </h1>
   <ul class="nav nav-tabs">
       <li class="nav-item">
         <%=@user.first_name%>
@@ -21,9 +22,15 @@
       </li>
     </ul>
     <ul class="nav nav-tabs">
+    <% if @user.description %>
       <li class="nav-item">
         <%=@user.description%>
       </li>
+    <% else %>
+      <li class="nav-item">
+        <p>=== Your description will apear here ===</p>
+      </li>
+    <% end %>
     </ul>
 
     <% if !@user.created_events.empty? %>

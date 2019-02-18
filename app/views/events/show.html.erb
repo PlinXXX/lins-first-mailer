@@ -57,8 +57,10 @@
 
     <div class="container">
       <div class="row">
-        
+      
+      <% unless pre_like %> 
       <%= button_to 'Like', event_likes_path(@event.id), method: :post %>
+      <% end %>
         <%= @event.likes.count %>
         <%= (@event.likes.count) == 1 || (@event.likes.count) == 0 ? 'Like' : 'Likes' %>
       <% if pre_like %>

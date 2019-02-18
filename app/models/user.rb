@@ -9,6 +9,8 @@ class User < ApplicationRecord
 	has_many :events, through: :attendances, dependent: :destroy
   has_many :likes, dependent: :destroy
 
+  has_one_attached :avatar
+
 	after_create :welcome_send
 
   validates :email, presence: true

@@ -2,7 +2,12 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:secret]
   before_action :set_user, only: [:show, :edit, :update]
 
+  def new
+  	@user.avatar.attach(params[:avatar])
+  end
+
 	def show
+		
 	end
 
 	def edit

@@ -5,7 +5,9 @@ ruby '2.5.1'
 
 gem 'rails_admin', '~> 1.3'
 
-gem "administrate"
+# gem "administrate"
+
+gem 'cancancan'
 
 gem 'stripe'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

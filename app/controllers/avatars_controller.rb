@@ -5,9 +5,9 @@ class AvatarsController < ApplicationController
 		
 		if params[:avatar]
 			@user.avatar.attach(params[:avatar])
-    	redirect_to(user_path(@user))
+    	redirect_to user_path(@user)
 		else
-    	redirect_to(user_path(@user))
+    	redirect_to	 edit_user_path(@user)
 		end
 	end
 end

@@ -1,6 +1,6 @@
 <div>  
   <% if user_signed_in? %>
-    <h2>Welcome, <%= current_user.first_name %></h2><br>
+    <h2>Welcome, <%= current_user.first_name %> | <%= current_user.is_admin %></h2><br>
       
     
     <h2>Available events</h2>

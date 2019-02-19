@@ -1,0 +1,12 @@
+<h1>Bienvenue <%= current_user.first_name %></h1>
+<p>
+	Tu es dans app/views/admin/users/index.html <br>
+	index.html.erb
+</p>
+<% @all_users.each do |user| %>
+	<%= user.email %><br>
+	<%= link_to "more", admin_user_path(user.id) %>
+	<div class="badge badge-light">
+		<%= link_to "EDIT", edit_admin_user_path(user.id) %>
+	</div>
+<%end%>

@@ -1,4 +1,4 @@
-<h2>Edit <%= @current_user.first_name %></h2>
+<h2>Edit <%= @current_user.email %></h2>
 
 <div class="row">
   	<%= form_for @user do |f| %>
@@ -18,13 +18,16 @@
 			<button type="submit" class="btn btn-dark">Update</button>
 		</div>
 	<% end %>
+	<div class="for-group">
+		<%= form_tag user_avatars_path(@user), multipart: true do %>
+	 		<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+			<label>Avatar</label>
+			<%= file_field_tag :avatar %>
+			<%= submit_tag "add" %>
+		<% end %>
+	</div>
 </div>
 
-<h3>Change your avatar ?</h3>
-<%= form_tag user_avatars_path(@user), multipart: true do %>
-  <%= file_field_tag :avatar %>
-  <%= submit_tag "update" %>
-<% end %>
 
 <%= link_to "Back", :back %>
 

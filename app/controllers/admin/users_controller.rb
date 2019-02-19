@@ -19,6 +19,10 @@ module Admin
     # See https://administrate-prototype.herokuapp.com/customizing_controller_actions
     # for more information
 
+    def new
+      @user = User.new
+    end
+
     def show
         
     end
@@ -31,7 +35,7 @@ module Admin
     end
     def destroy
       @user.destroy
-      redirect to admin_root_path
+      redirect_to admin_root_path
     end
 
     def index

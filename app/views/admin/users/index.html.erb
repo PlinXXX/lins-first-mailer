@@ -3,10 +3,45 @@
 	Tu es dans app/views/admin/users/index.html <br>
 	index.html.erb
 </p>
-<% @all_users.each do |user| %>
-	<%= user.email %><br>
-	<%= link_to "more", admin_user_path(user.id) %>
-	<div class="badge badge-light">
-		<%= link_to "EDIT", edit_admin_user_path(user.id) %>
-	</div>
-<%end%>
+<div>
+	<%= 	link_to "New", new_admin_user_path %>
+</div>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">User</th>
+      <th scope="col">Show</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+
+    <!-- <tr class="table-active">
+    <tr class="table-primary">
+    <tr class="table-secondary">
+    <tr class="table-success">
+    <tr class="table-danger">
+    <tr class="table-warning">
+    <tr class="table-info">
+    <tr class="table-light">
+    <tr class="table-dark"> -->
+
+  <tbody>
+    
+    <% @all_users.each do |user| %>
+      <tr class="table-dark">
+        <td><%= user.email %></td>
+        <td class="btn btn-primary"><%= link_to "MORE", admin_user_path(user.id) %></td>
+
+        <td><%= link_to "EDIT", edit_admin_user_path(user.id) %></td>
+        <% unless user.is_admin %>
+        <td><%= button_to "DELETE", admin_user_path(user.id), method: :delete, data: { confirm: "Are you sure?" } %></td>
+        <%else%>
+        <td>==You Can't Delete your account here==</td>
+        <%end%>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table> 

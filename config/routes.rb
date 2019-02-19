@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  # namespace :admin do
+  #     resources :users
+  #     resources :attendances
+  #     resources :events
+  #     resources :likes
+
+  #     root to: "users#index"
+  #   end
   get 'home/index'
   get 'home/secret'
   devise_for :users, controllers: {

@@ -1,0 +1,19 @@
+app/views/conversations/index.html.erb
+
+<h1>INDEX CONVERSATION</h1>
+
+<h3 id="sent-messages">Sent messages</h3>
+
+<% @sent_mess.each do |mess| %>
+	To : <%= mess.recipient.first_name %><br>
+	Content : <%= mess.content %><br>
+	<%= link_to "DELETE", user_conversation_path(current_user.id, mess.id), method: "delete", data: {confirm: "Are you sure ?"} %><br><br>
+<% end %>
+
+<h3 id="received-messages">Received messages</h3>
+
+<% @received_mess.each do |mess| %>
+	From : <%= mess.sender.first_name %><br>
+	Content : <%= mess.content %><br>
+	<%= link_to "DELETE", user_conversation_path(current_user.id, mess.id), method: "delete", data: {confirm: "Are you sure ?"} %><br><br>
+<% end %>

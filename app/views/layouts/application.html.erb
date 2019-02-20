@@ -78,11 +78,10 @@
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Messages</a>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Sent</a>
-              <a class="dropdown-item" href="#">Received</a>
-              <a class="dropdown-item" href="#">New message</a>
+              <a class="dropdown-item" href="/users/<%= current_user.id %>/conversations#sent-messages">Sent</a><a class="dropdown-item" href="/users/<%= current_user.id %>/conversations#received-messages">Received</a>
+              <a class="dropdown-item" href="/users/<%= current_user.id %>/conversations/new">New message</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/users/sign_out">Log out</a>
+              <a class="dropdown-item" href="/users/sign_out" method="delete" data-confirmation="Log out ?">Log out</a>
             </div>
           </li>
         </ul>

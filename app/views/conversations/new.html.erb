@@ -1,0 +1,16 @@
+app/views/conversations/new.html.erb
+
+<h1>New Conversation</h1>
+
+<h2>To : </h2>
+
+<%= form_tag user_conversations_path(@user.id), method: :post do %>
+	<select>
+		<% @all_user.each do |user| %>
+  			<option><%= user.first_name %><% @recipient = user %></option>
+  	<% end %>
+	</select> 
+	<%= email_field_tag :recipient, @recipient.email %><br>
+	<%= text_area_tag :content %><br>
+	<button type="submit" class="btn btn-success">Send</button>
+<% end %>

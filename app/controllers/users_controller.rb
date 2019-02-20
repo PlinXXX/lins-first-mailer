@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include UsersHelper
   before_action :authenticate_user!, only: [:secret]
   before_action :set_user, only: [:show, :edit, :update]
 
@@ -9,6 +10,8 @@ class UsersController < ApplicationController
   end
 
 	def show
+    @sent_messages = @user.sent_messages
+    @received_messages = @user.received_messages
 	end
 
 	def edit
@@ -32,16 +35,5 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
-	end
-
-	private
-
-	def set_user
-		@user = current_user
-	end
-
-	def user_params
-		params.require(:user).permit(:first_name, :last_name, :description)
-	end
-	
+	end	
 end

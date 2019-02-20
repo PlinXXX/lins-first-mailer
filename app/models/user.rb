@@ -14,8 +14,12 @@ class User < ApplicationRecord
 	after_create :welcome_send
 
   validates :email, presence: true
-  validates :first_name, presence: true
+  validates :first_name, presence: true, uniqueness: true
   validates :last_name, presence: true
+
+  has_many :sent_messages, foreign_key: 'sender_id', class_name: "Conversation"
+  has_many :received_messages, foreign_key: 'recipient_id', class_name: "Conversation"
+
 
   def welcome_send
     UserMailer.welcome_email(self).deliver_now

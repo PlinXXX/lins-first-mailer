@@ -19,12 +19,8 @@ class EventsController < ApplicationController
   end
 
   def create
-    puts "$"*60
     @event = Event.new(event_params)
     @event.admin = current_user
-
-    puts params.inspect
-    puts img_params
 
     respond_to do |format|
       if @event.save

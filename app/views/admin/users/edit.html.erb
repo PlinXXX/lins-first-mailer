@@ -1,35 +1,60 @@
-<h1>EDIT USER PROFIL</h1>
+<!-- NAV BAR -->
 
-app/views/admin/users/edit.html.erb
-
-<div class="row">
-  <%= form_for @user do |f| %>
-    <div class="for-group">
-      <label>First name</label>
-      <%= f.text_field :first_name %>
-    </div>
-    <div class="for-group">
-      <label>Last name</label>
-      <%= f.text_field :last_name %>
-    </div>
-    <div class="for-group">
-      <label>Email</label>
-      <%= f.email_field :email %>
-    </div>
-    <div class="for-group">
-      <label>Password</label>
-      <%= f.password_field :password %>
-    </div>
-    <div class="for-group">
-      <label>Confirm Password</label>
-      <%= f.password_field :password_confirmation %>
-    </div>
-    <div class="for-group">
-      <label>Description</label>
-      <%= f.text_area :description %>
-    </div>
-    <div class="form-group">
-      <button type="submit" class="btn btn-success">Update</button>
-    </div>
-  <% end %>
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="/admin/users">Users</a>
+  <a href="/admin/events">Events</a>
+  <a href="/admin/attendances">Attendances</a>
+  <a href="#">About</a>
 </div>
+
+<!-- Use any element to open the sidenav -->
+<span onclick="openNav()">menu</span>
+
+<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+<div id="main">
+
+	<h1>EDIT USER PROFIL</h1>
+
+	<%= link_to "show", admin_user_path(@user.id) %>
+	<div class="row">
+	  <%= form_for @user do |f| %>
+	    <div class="for-group">
+	      <label>First name</label>
+	      <%= f.text_field :first_name %>
+	    </div>
+	    <div class="for-group">
+	      <label>Last name</label>
+	      <%= f.text_field :last_name %>
+	    </div>
+	    <div class="for-group">
+	      <label>Email</label>
+	      <%= f.email_field :email %>
+	    </div>
+	    <div class="for-group">
+	      <label>Password</label>
+	      <%= f.password_field :password %>
+	    </div>
+	    <div class="for-group">
+	      <label>Confirm Password</label>
+	      <%= f.password_field :password_confirmation %>
+	    </div>
+	    <div class="for-group">
+	      <label>Description</label>
+	      <%= f.text_area :description %>
+	    </div>
+	    <div class="form-group">
+	      <button type="submit" class="btn btn-success">Update</button>
+	    </div>
+	  <% end %>
+	</div>
+
+</div> 
+
+<!-- Nav CSS -->
+<%= stylesheet_link_tag "admin" %>
+
+
+<!-- Nav JS -->
+<script type="text/javascript" src="/javascripts/lib/admin.jquery.min.js"></script>
+

@@ -1,15 +1,40 @@
-<h1>SHOW USER PROFIL</h1>
+<!-- NAV BAR -->
 
-app/views/admin/users/show.html.erb <br><br>
-First name : <%= @user.first_name %><br>
-Last name : <%= @user.last_name %><br>
-Email : <%= @user.email %><br>
-Description : <%= @user.description %><br>
-Is Admin : <%= @user.is_admin %><br>
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="/admin/users">Users</a>
+  <a href="/admin/events">Events</a>
+  <a href="/admin/attendances">Attendances</a>
+  <a href="#">About</a>
+</div>
 
-	<%= link_to "EDIT", edit_admin_user_path(@user.id) %>
-<% unless @user.is_admin %>
-	<%= button_to "DELETE", admin_user_path(@user.id), method: :delete, data: { confirm: "Are you sure?" } %>
-<%else%>
-    ==You Can't Delete your account here==
-<%end%>
+<!-- Use any element to open the sidenav -->
+<span onclick="openNav()">menu</span>
+
+<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+<div id="main">
+
+	<h1>SHOW USER PROFIL</h1>
+
+	First name : <%= @user.first_name %><br>
+	Last name : <%= @user.last_name %><br>
+	Email : <%= @user.email %><br>
+	Description : <%= @user.description %><br>
+	Is Admin : <%= @user.is_admin %><br>
+
+		<%= link_to "EDIT", edit_admin_user_path(@user.id) %>
+	<% unless @user.is_admin %>
+		<%= button_to "DELETE", admin_user_path(@user.id), method: :delete, data: { confirm: "Are you sure?" } %>
+	<%else%>
+	    ==You Can't Delete your account here==
+	<%end%>
+
+</div> 
+
+<!-- Nav CSS -->
+<%= stylesheet_link_tag "admin" %>
+
+
+<!-- Nav JS -->
+<script type="text/javascript" src="/javascripts/lib/admin.jquery.min.js"></script>
+

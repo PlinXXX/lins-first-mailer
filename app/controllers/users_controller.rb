@@ -6,7 +6,6 @@ class UsersController < ApplicationController
   end
 
   def create
-  	@user.is_admin = true if @user.email == "admin@yopmail.com"
   end
 
 	def show
@@ -25,7 +24,8 @@ class UsersController < ApplicationController
       end 
 
       if @user.update(user_params)
-        format.html { redirect_to user_path(@user.id), notice: 'Profil was successfully updated.' }
+        format.html { redirect_to user_path(@user.id), notice: 'Profil was successfully updated.' } if !@user.is_admin
+        format.html { redirect_to admin_user_path(@user.id), notice: 'Profil was successfully updated.' } if @user.is_admin
         format.json { render :edit, status: :updated, location: @user }
       else
         format.html { render :edit }

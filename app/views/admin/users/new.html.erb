@@ -1,7 +1,7 @@
 <h2>New user</h2>
 
 <div class="row">
-  <%= form_for @user do |f| %>
+  <%= form_for admin_users_url do |f| %>
     <div class="for-group">
       <label>First name</label>
       <%= f.text_field :first_name %>

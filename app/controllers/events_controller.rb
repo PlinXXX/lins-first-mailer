@@ -20,15 +20,20 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.admin = current_user
+    @event.admin_id = current_user.id
 
     respond_to do |format|
       if @event.save
-        @event.image.attach(img_params)
-        format.html { redirect_to "/events", notice: 'Event was successfully created.' }
+        format.html { 
+          redirect_to "/events", 
+          flash[:success] ='Event was successfully created.' 
+        }
         format.json { render :new, status: :created, location: @event }
       else
-        format.html { render :new }
+        format.html { 
+          render :new, 
+          flash.now[:danger] = @event.errors.full_messages
+        }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
@@ -38,6 +43,7 @@ class EventsController < ApplicationController
   end
 
   def update
+    @event.image.attach(img_params)
     @event.update(event_params)
     redirect_to "/events"
   end
@@ -45,23 +51,5 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     redirect_to '/events'
-  end
-
-  private
-
-  def event_params
-    params.require(:event).permit(:title, :duration, :start_date, :location, :price, :description, :image)
-  end
-
-  def img_params
-    params[:image]
-  end
-
-  def set_event
-    @event = Event.find(params[:id])
-  end
-
-  def set_user
-    @user = current_user
   end
 end

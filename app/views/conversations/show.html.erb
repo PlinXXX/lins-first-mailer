@@ -1,7 +1,32 @@
-app/views/show.html.erb
+<style type="text/css">
+	.rigth {
+		text-align: right;
+	}
+</style>
 
-<% if true %>
+<h1>SHOW CONVERSATION</h1>
 
-<% else %>
+app/views/conversations/show.html.erb <br>
+
+
+<% @private_messages.sort_by.each do |pm| %>
+
+	<% if  pm.sender != current_user %>
+		<div class="left">
+			<%= pm.sender.first_name %> | <%= pm.content %><br>
+		</div>
+	<% else %>
+		<div class="rigth">
+			<%= pm.content %> | <%= pm.sender.first_name %><br>
+		</div>
+	<% end %><br>
 
 <% end %>
+
+<form accept-charset="UTF-8" action="/users/<%= current_user.id %>/conversations" method="POST">
+	<input name="recipient" type="hidden" value="<%= @mess.sender.email %>" />
+	<input name="content" type="text_area" value="<%= @mess.content %>" />
+	<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+	<button type="submit" class="btn btn-secondary">Reply</button>
+</form>
+

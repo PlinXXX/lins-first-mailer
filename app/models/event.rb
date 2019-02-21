@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-	validates :start_date, presence: true #start_date should be in the future
+	validates :start_date, presence: true, date: { after: Proc.new { Date.current }, message: 'must be after today' } #start_date should be in the future
 	validates :duration, presence: true # length in min should be divised by 5
 	validates :title, presence: true, length: { in: 5..140 }
 	validates :description, presence: true, length: {in: 20..1000}

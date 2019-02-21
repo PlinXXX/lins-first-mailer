@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.1'
 
+gem 'date_validator'
+
 gem 'rails_admin', '~> 1.3'
 
 # gem "administrate"

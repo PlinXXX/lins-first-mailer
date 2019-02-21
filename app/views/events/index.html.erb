@@ -1,36 +1,40 @@
+<%= flash[:success] %>
+
 <span class="badge badge-success"><%= link_to "Create new event", new_event_path %></span>
 
 <div>
 	<h2>Events</h2>
 
 	<% @all_events.each do |event| %>
-		<div class="card text-white bg-info mb-3" style="max-width: 20rem;">
-	      <div class="card-header"><%= event.title %></div>
-	        <div class="card-body">
 
-	          <p class="card-text">
-	            <%= event.description %>
-	            (<%= event.attendances.length %>)<br>
-	
-	          	<% if event.attendances.length != 0 %>
-	          		<% event.attendances.each do |a| %>
-	          			<%= a.user.first_name %> :
-	          			<%= a.user.email %><br>
-	          		<% end %>
-	          	<%end%>
+			<div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+		      <div class="card-header"><%= event.title %></div>
+		        <div class="card-body">
 
-	          </p>
+		          <p class="card-text">
+		            <%= event.description %>
+		            (<%= event.attendances.length %>)<br>
+		
+		          	<% if event.attendances.length != 0 %>
+		          		<% event.attendances.each do |a| %>
+		          			<%= a.user.first_name %> :
+		          			<%= a.user.email %><br>
+		          		<% end %>
+		          	<%end%>
 
-	          <p class="card-text">
-	          	<span class="badge badge-light"><%= link_to "EDIT", edit_event_path(event.id) %></span>
-	            <% if event.attendances == 0 %>
-	            	<span class="badge badge-danger"><%= link_to "DELETE", event_path(event.id), method: "delete", data: {confirm: "Are you sure ?"} %></span>          	
-	            <% end %>
-	          </p>
+		          </p>
 
-	        </div>
-	      </div>
-	    </div>
+		          <p class="card-text">
+		          	<span class="badge badge-light"><%= link_to "EDIT", edit_event_path(event.id) %></span>
+		            <% if event.attendances.length == 0 %>
+		            	<span class="badge badge-danger"><%= link_to "DELETE", event_path(event.id), method: "delete", data: {confirm: "Are you sure ?"} %></span>          	
+		            <% end %>
+		          </p>
+
+		        </div>
+		      </div>
+		    </div>
+
 	<% end %>
 </div>
 

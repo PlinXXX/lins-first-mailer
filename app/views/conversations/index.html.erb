@@ -1,19 +1,34 @@
-app/views/conversations/index.html.erb
-
 <h1>INDEX CONVERSATION</h1>
 
 <h3 id="sent-messages">Sent messages</h3>
 
+<div class="row">
 <% @sent_mess.each do |mess| %>
-	To : <%= mess.recipient.first_name %><br>
-	Content : <%= mess.content %><br>
-	<%= link_to "DELETE", user_conversation_path(current_user.id, mess.id), method: "delete", data: {confirm: "Are you sure ?"} %><br><br>
+	<div class="col-sm-3">
+		Sent at : <%= mess.created_at %><br>
+		To : <%= mess.recipient.first_name %><br>
+		Content : <%= mess.content %><br>
+		<%= link_to "DELETE", user_conversation_path(current_user.id, mess.id), method: "delete", data: {confirm: "Are you sure ?"} %><br><br>
+	</div> 
+
 <% end %>
+</div> 
+
 
 <h3 id="received-messages">Received messages</h3>
-
+<div class="row">
 <% @received_mess.each do |mess| %>
-	From : <%= mess.sender.first_name %><br>
-	Content : <%= mess.content %><br>
-	<%= link_to "DELETE", user_conversation_path(current_user.id, mess.id), method: "delete", data: {confirm: "Are you sure ?"} %><br><br>
-<% end %>
+	<div class="col-sm-3">
+		Received at : <%= mess.created_at %><br>
+		From : <%= link_to "#{mess.sender.first_name}", user_conversation_path(mess.sender.id, mess.id) %><br>
+		Content : <%= mess.content %><br>
+		<%= link_to "DELETE", user_conversation_path(current_user.id, mess.id), method: "delete", data: {confirm: "Are you sure ?"} %>
+		<form accept-charset="UTF-8" action="/users/<%= current_user.id %>/conversations" method="POST">
+		  <input name="recipient" type="hidden" value="<%= mess.sender.email %>" />
+		  <input name="content" type="text_area" value="<%= mess.content %>" />
+		  <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+		  <button type="submit" class="btn btn-secondary">Reply</button>
+		</form>
+	</div> 
+<% end %>	
+</div> 

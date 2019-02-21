@@ -1,0 +1,22 @@
+      <% if user_signed_in? %>
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" href="/users/<%=current_user.id%>">Me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/edit">Advanced edit</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/events">My events</a>
+          </li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Messages</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/users/<%= current_user.id %>/conversations#sent-messages">Sent</a><a class="dropdown-item" href="/users/<%= current_user.id %>/conversations#received-messages">Received</a>
+              <a class="dropdown-item" href="/users/<%= current_user.id %>/conversations/new">New message</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/users/sign_out" method="delete" data-confirmation="Log out ?">Log out</a>
+            </div>
+          </li>
+        </ul>
+      <% end %>

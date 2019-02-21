@@ -4,8 +4,9 @@ Rails.application.routes.draw do
     resources :attendances
     resources :events
 
-    root to: "users#index"
+    root 'application#index'
   end
+  get '/admin', to: 'admin#index'
   
   get 'home/index'
   get 'home/secret'

@@ -1,3 +1,7 @@
+<% flash[:danger].each do |key, value| %>
+	<%= value %>
+<% end %>
+
 <h2>New Event</h2>
 
 <div class="row">
@@ -25,9 +29,6 @@
 		<div class="for-group">
 			<label>Description</label>
 			<%= f.text_area :description %>
-		</div>
-		<div class="for-group">
-  			<%= file_field_tag :image %>
 		</div>
 		<div class="form-group">
 			<button type="submit" class="btn btn-success">Create</button>

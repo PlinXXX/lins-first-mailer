@@ -1,5 +1,7 @@
 class ConversationsController < ApplicationController
 	include UsersHelper
+	include ConversationHelper
+
   before_action :set_user
 
 	def new
@@ -8,9 +10,8 @@ class ConversationsController < ApplicationController
 	end
 
 	def create
-		puts "$"*60
-		puts params.inspect
-		puts "$"*60
+		@all_user = User.all
+
 		@conversation = Conversation.new(
 			sender: current_user,
 			recipient: User.find_by(email: params[:recipient]),
@@ -38,5 +39,10 @@ class ConversationsController < ApplicationController
 		@conv = Conversation.find(params[:id])
 		@conv.destroy
 		redirect_to user_conversations_path(@user.id)
+	end
+
+	def show
+		@private_messages = private_messages
+		@mess = mess_received_from_the_other_user
 	end
 end

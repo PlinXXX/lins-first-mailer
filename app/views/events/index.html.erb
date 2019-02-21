@@ -8,7 +8,13 @@
 	<% @all_events.each do |event| %>
 
 			<div class="card text-white bg-info mb-3" style="max-width: 20rem;">
-		      <div class="card-header"><%= event.title %></div>
+		      <div class="card-header">
+		      	<%= event.title %>
+		      	<% if !event.is_validate %>
+		      		<mark>(Your event is waiting for admin validation)</mark>
+		      	<% end %>
+		      		
+		      </div>
 		        <div class="card-body">
 
 		          <p class="card-text">

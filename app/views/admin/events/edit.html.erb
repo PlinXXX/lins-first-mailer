@@ -1,0 +1,15 @@
+app/views/admin/events/edit.html.erb
+
+<div class="row">
+	<%= form_for @event do |f| %>
+		<%= f.text_field :title %>
+		<%= f.number_field :duration %>
+		<%= f.date_field :start_date %>
+		<%= f.text_field :location %>
+		<%= f.text_field :price %>
+		<%= f.text_area :description %>
+		<%= f.text_field :is_validate %>
+		
+		<button type="submit" class="btn btn-ligth">Update</button>
+	<% end %>
+</div>

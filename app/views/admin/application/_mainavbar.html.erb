@@ -4,10 +4,9 @@
 			<h1 class="logo">My Admin Space</h1>
 		</div>
 		<div class="m-rigth">
-			<a href="#" class="m-link">Accueil</a>
-			<a href="#" class="m-link">Articles</a>
-			<a href="#" class="m-link">A propos</a>		
-			<a href="#" class="m-link">Contact</a>
+			<a href="/home/index" class="m-link">Home</a>
+			<a href="/users/<%= current_user.id %>/conversations" class="m-link">My Messages</a>
+			<a href="/admin/events" class="m-link">Waiting Events</a>
 		</div>
 	</div>
 </nav>

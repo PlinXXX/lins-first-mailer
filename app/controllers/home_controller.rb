@@ -5,12 +5,7 @@ class HomeController < ApplicationController
   
   def index
 
-    puts "$"*60
-    puts params.inspect
-    puts session
-    puts "$"*60
-
-  	@all_events = Event.all.reverse
+  	@all_events = Event.where(is_validate: true).reverse
 
   	respond_to do |format|
 			format.html

@@ -1,4 +1,21 @@
 <%= render "mainavbar" %>	
 <%= render "navbar" %>	
 
-app/views/admin/events/index.html.erb
+<div class="container">
+	<% if @all_events.length != 0 %>
+		<% @all_events.each do |event| %>
+			<%= event.admin.first_name %><br>
+			<%= event.description %><br>
+			<%= event.price %><br>
+			<%= event.is_validate %><br><br>
+			<p class="card-text">
+		        <span class="badge badge-light"><%= link_to "EDIT", edit_admin_event_path(event.id) %></span>
+		        <% if event.attendances.length == 0 %>
+		            <span class="badge badge-danger"><%= link_to "DELETE", admin_event_path(event.id), method: "delete", data: {confirm: "Are you sure ?"} %></span>          	
+		        <% end %>
+		    </p>
+		<% end %>
+	<% else %>
+		<h1 style="text-align: center;">== There is no invalid event ==</h1>
+	<% end %>
+</div>

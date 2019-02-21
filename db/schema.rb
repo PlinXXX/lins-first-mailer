@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 2019_02_20_101015) do
     t.text "description"
     t.integer "price"
     t.string "location"
+    t.boolean "is_validate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["admin_id"], name: "index_events_on_admin_id"
@@ -84,7 +85,7 @@ ActiveRecord::Schema.define(version: 2019_02_20_101015) do
     t.text "description"
     t.string "first_name"
     t.string "last_name"
-    t.boolean "is_admin", default: false
+    t.boolean "is_admin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "reset_password_token"

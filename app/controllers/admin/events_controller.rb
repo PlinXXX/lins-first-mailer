@@ -1,5 +1,8 @@
 module Admin
   class EventsController < Admin::ApplicationController
+    include EventsHelper
+    before_action :set_event, only: [:show, :edit, :update, :destroy]
+    
     # To customize the behavior of this controller,
     # you can overwrite any of the RESTful actions. For example:
     #
@@ -19,11 +22,13 @@ module Admin
     # for more information
 
     def index
-        
+      @all_events = Event.where(is_validate: false)
+    end
+
+    def edit
     end
 
     def update
-        
     end
     
   end

@@ -8,6 +8,7 @@ class CreateEvents < ActiveRecord::Migration[5.2]
       t.text :description
       t.integer :price
       t.string :location
+      t.boolean :is_validate
 
       t.timestamps
     end

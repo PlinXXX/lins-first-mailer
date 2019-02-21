@@ -21,21 +21,12 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.admin_id = current_user.id
+    @event.is_validate = current_user.email == "admin@yopmail.com" ? true : false
 
-    respond_to do |format|
-      if @event.save
-        format.html { 
-          redirect_to "/events", 
-          flash[:success] ='Event was successfully created.' 
-        }
-        format.json { render :new, status: :created, location: @event }
-      else
-        format.html { 
-          render :new, 
-          flash.now[:danger] = @event.errors.full_messages
-        }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
+    if @event.save
+      redirect_to '/events'
+    else
+      render :new 
     end
   end
 
@@ -43,9 +34,14 @@ class EventsController < ApplicationController
   end
 
   def update
-    @event.image.attach(img_params)
-    @event.update(event_params)
-    redirect_to "/events"
+    if @event.is_validate
+      @event.image.attach(img_params)
+      @event.update(event_params)
+      redirect_to "/events"
+    else
+      @event.update(admin_event_params)
+      redirect_to "/admin/events"
+    end
   end
 
   def destroy

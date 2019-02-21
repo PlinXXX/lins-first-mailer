@@ -1,8 +1,14 @@
+@not_yet_validate = Hash.new
+
 module EventsHelper
-	attr_accessor :title, :duration, :start_date, :location, :price, :description
+  attr_accessor :title, :duration, :start_date, :location, :price, :description
 
   def event_params
     params.require(:event).permit(:title, :duration, :start_date, :location, :price, :description)
+  end
+
+  def admin_event_params
+    params.require(:event).permit(:title, :duration, :start_date, :location, :price, :description, :is_validate)
   end
 
   def img_params
